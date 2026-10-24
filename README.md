@@ -61,15 +61,16 @@ python app.py
 
 构建完成后，可执行文件位于 `dist\SuperBatchRenamer.exe`。构建脚本会检查当前 Python 解释器是否为 64 位。
 
-## 仓库直接下载程序
-
-https://github.com/wdd500/SuperBatchRenamer/blob/main/dist/SuperBatchRenamer.exe
 
 ## 运行测试
 
 ```powershell
 python -m unittest
 ```
+
+## 仓库直接下载程序
+
+https://github.com/wdd500/SuperBatchRenamer/blob/main/dist/SuperBatchRenamer.exe
 
 ## 许可证
 
