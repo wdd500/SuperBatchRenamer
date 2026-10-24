@@ -10,6 +10,8 @@ characters from a 1-based position. Preview columns automatically size to
 their contents, with a horizontal scrollbar for long names or paths and visible
 cell gridlines.
 
+**详细功能介绍：** [功能介绍.md](功能介绍.md)
+
 In **位置字符**, enter a 1-based start position and character count, then choose
 random English letters with a configurable output length and no duplicate
 generated strings within the current batch (case-insensitively), fixed
