@@ -2,6 +2,8 @@
 
 面向 Windows 64 位系统的桌面批量重命名工具，提供适配高 DPI 的图形界面，支持批量处理文件和文件夹。功能包括常规名称与扩展名设置、查找替换、删除、插入、大小写转换、按位置修改字符、随机英文字母、文本编码、实时预览、冲突检查和撤销。
 
+<img width="3840" height="2076" alt="SuperBatchRenamer" src="https://github.com/user-attachments/assets/e2283a0b-8ea8-41fd-9de2-d7839bcdc642" />
+
 **详细功能介绍：** [功能介绍.md](功能介绍.md)
 
 ## 主要功能
