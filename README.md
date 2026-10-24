@@ -1,71 +1,72 @@
-# Windows 64-bit Batch Renamer
+# 超级文件批量重命名工具
 
-A Windows desktop recreation of the supplied tool's visible features, with a
-high-DPI-ready interface for file and folder renaming. Features include general
-name/extension construction, replace or delete, insertion, case conversion,
-position-based character replacement, repeatable random English-letter
-generation, text encoding output, live batch preview, collision checks, and
-undo. The **替换/删除** page also supports deleting a selected number of
-characters from a 1-based position. Preview columns automatically size to
-their contents, with a horizontal scrollbar for long names or paths and visible
-cell gridlines.
+面向 Windows 64 位系统的桌面批量重命名工具，提供适配高 DPI 的图形界面，支持批量处理文件和文件夹。功能包括常规名称与扩展名设置、查找替换、删除、插入、大小写转换、按位置修改字符、随机英文字母、文本编码、实时预览、冲突检查和撤销。
 
 **详细功能介绍：** [功能介绍.md](功能介绍.md)
 
-In **位置字符**, enter a 1-based start position and character count, then choose
-random English letters with a configurable output length and no duplicate
-generated strings within the current batch (case-insensitively), fixed
-replacement text, or incrementing numeric identifiers starting at 1 with a
-configurable digit width. Use the separate
-**编码生成** page to encode the selected scope directly; it does not require a
-character position or count. Supported output includes UTF-8/GBK hexadecimal,
-UTF-8 URL encoding, UTF-8 Base64, and Unicode escapes. Positions past the end
-of a name are reported in the preview instead of being silently changed.
+## 主要功能
 
-Numeric settings such as sequence start/increment, digit width, insertion
-position, character start/count, and numeric-identifier digit width have `+`
-and `−` buttons and accept digits (and an optional minus sign for signed
-sequence values).
+- **按位置删除：** 在“替换/删除”页面指定起始位置和字符数，删除名称片段。
+- **随机英文字母：** 在“位置字符”页面设置生成位数；同一批次中的随机字符串忽略大小写后互不重复。
+- **数字编号：** 在“位置字符”页面按列表顺序从 1 开始递增，可设置编号位数。
+- **编码生成：** 独立页面支持 UTF-8/GBK 十六进制、UTF-8 URL 编码、UTF-8 Base64 和 Unicode 转义；直接处理所选范围，无需输入位置或字符数。
+- **数字输入辅助：** 序号起始量、增量、插入位置、字符位置和位数等数字设置带有 `+`、`−` 调整按钮。
+- **自适应表格预览：** 显示原名称、新名称预览、所在路径和状态。列宽随内容调整；长名称或路径可横向滚动，单元格带网格线。
+- **安全检查与撤销：** 提示无效名称及重名目标，不覆盖列表外已存在的项目；批量操作完成后可撤销上次操作。
 
-Switch the **重命名对象** selector to **文件夹** to choose a parent folder and
-batch-rename its immediate child folders. File mode can add individual files or
-import files from a folder, optionally including subdirectories.
-Drag files into the app in file mode. Dragging a folder into file mode imports
-its files (and nested files when that option is checked). In folder mode, drag
-the folders themselves to add them to the rename list.
+## 文件和文件夹模式
 
-Select **关于** in the title bar for a feature overview and a clickable link to
-the open-source repository.
+在“重命名对象”中选择**文件**或**文件夹**：
 
-The UI is based on the observed original window and tabs. Unobserved edge cases
-use conservative behavior: existing destinations are never overwritten and
-batch moves are staged through temporary names to support swaps.
+- 文件模式可添加单个或多个文件，也可导入指定目录中的文件；勾选“导入文件时包含子目录”后会递归导入。
+- 文件夹模式可将选定父目录下的直接子文件夹加入列表进行批量改名。
+- 支持将文件或文件夹拖入窗口。文件模式下，拖入目录可导入其中的文件；文件夹模式下，拖入的文件夹本身会加入列表。
 
-## Build a Windows 64-bit executable
+更改文件/文件夹模式时，如列表中已有项目，软件会先询问确认，并在确认切换后清空当前列表。
 
-Use 64-bit Python 3.10 or later. Install the pinned build and drag-and-drop
-dependencies once:
+## 使用与预览
+
+1. 选择文件或文件夹模式，将要处理的项目添加到列表。
+2. 在对应功能页面中设置命名规则和作用范围。
+3. 检查预览表格中的原名称、新名称和状态提示。
+4. 点击“执行重命名”，确认后执行。需要恢复时，点击“撤销上次操作”。
+
+所有规则均即时反映在预览中。按位置设置的字符位置从 1 开始；插入位置从 0 开始。目标名称已经存在、名称无效或多项操作将产生相同目标时，软件会提示相关问题。
+
+## 关于
+
+点击窗口标题栏中的**关于**，可查看软件说明并通过链接打开开源仓库。
+
+## 从源码运行
+
+需要 64 位 Python 3.10 或更高版本。安装依赖：
 
 ```powershell
 python -m pip install -r requirements.txt
 ```
 
-Then build:
-
-```powershell
-.\build_windows.bat
-```
-
-The standalone GUI executable is written to `dist\SuperBatchRenamer.exe`.
-The build script checks that the active Python interpreter is 64-bit before
-packaging. To run from source instead:
+运行程序：
 
 ```powershell
 python app.py
 ```
 
-Run the tests:
+## 构建 Windows 64 位程序
+
+安装依赖后运行构建脚本：
+
+```powershell
+.\build_windows.bat
+```
+
+构建完成后，可执行文件位于 `dist\SuperBatchRenamer.exe`。构建脚本会检查当前 Python 解释器是否为 64 位。
+
+## 运行测试
 
 ```powershell
 python -m unittest
 ```
+
+## 许可证
+
+本项目采用 [GNU 通用公共许可证第三版（GPL-3.0）](LICENSE)。
